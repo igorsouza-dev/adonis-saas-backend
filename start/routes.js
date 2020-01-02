@@ -31,10 +31,13 @@ Route.group(() => {
         ]
       ]
     ))
+  Route.get('roles', 'RoleController.index')
 }).middleware('auth')
 
 Route.group(() => {
-  Route.post('invites', 'InviteController.store').validator('Invite')
+  Route.post('invites', 'InviteController.store')
+    .validator('Invite')
+    .middleware('can:invites_create')
   Route.resource('projects', 'ProjectController')
     .apiOnly()
     .validator(new Map(
@@ -42,6 +45,14 @@ Route.group(() => {
         [
           ['projects.store', 'projects.update'],
           ['Project']
+        ]
+      ]
+    ))
+    .middleware(new Map(
+      [
+        [
+          ['projects.store', 'projects.update'],
+          ['can:projects_create']
         ]
       ]
     ))
