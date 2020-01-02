@@ -17,6 +17,9 @@
 const Route = use('Route')
 
 Route.post('sessions', 'SessionController.store')
+Route.post('users', 'UserController.store')
+Route.get('register', 'UserController.create')
+
 Route.group(() => {
   Route.resource('teams', 'TeamController').apiOnly()
 }).middleware('auth')
