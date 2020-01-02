@@ -18,7 +18,8 @@ class Team {
     }
 
     if (!team) {
-      return response.status(401).send({ error: { message: 'You are not a member of this team' } })
+      return response.status(401)
+        .send({ error: { message: 'You are not a member of this team' } })
     }
 
     request.team = team
