@@ -15,7 +15,7 @@ InviteHook.sendInvitationEmail = async (invite) => {
   } else {
     const user = await invite.user().fetch()
     const team = await invite.team().fetch()
-    const link = `${Env.get('APP_URL')}/register`
+    const link = `${Env.get('FRONT_URL')}/signup`
 
     Kue.dispatch(Job.key, { user, team, email, link }, { attemps: 3 })
   }
