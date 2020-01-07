@@ -19,8 +19,8 @@ const Permission = use('Adonis/Acl/Permission')
 class DatabaseSeeder {
   async run () {
     const user = await User.create({
-      name: 'Igor Souza',
-      email: 'igorsouza.dev@gmail.com',
+      name: 'Admin',
+      email: 'admin@gmail.com',
       password: '123456'
     })
     const createInvite = await Permission.create({
@@ -50,7 +50,7 @@ class DatabaseSeeder {
     await moderator.permissions().attach([createProject.id])
 
     const team = await user.teams().create({
-      name: 'Havok',
+      name: 'Default',
       user_id: user.id
     })
 
